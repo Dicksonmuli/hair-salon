@@ -65,8 +65,8 @@ public class ClientTest {
 	@Test
 	public void update_updatesClientName_true() {
 		client1.save();
-		client1.update("abuja");
-		assertEquals("abuja", Client.find(client1.getId()).getName());
+		client1.update("description", "Viv", 67, "weeve", 1);
+		assertEquals("Viv", Client.find(client1.getId()).getName());
 	}
 	@Test
 public void delete_deletesTask_true() {

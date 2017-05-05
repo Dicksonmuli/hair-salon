@@ -1,0 +1,52 @@
+<h1>Welcome to the Hair Salon Application</h1>
+
+<h2> All Clients: </h2>
+
+#if($stylists)
+  <p>Click to view clients attched to stylist:</p>
+  <ul>
+    #foreach ($stylist in $stylists)
+      <li><a href="/stylists/$stylist.getId()">$stylists.getName()</a></li>
+    #end
+  </ul>
+#else
+  <p>There are no Stylists in your salon</p>
+#end
+
+<h2>Add stylist:</h2>
+
+<form action="/stylists" method="post">
+  <label for="name">Name</label>
+  <input id="name" name="name" type="text">
+	<label for="phone">phone</label>
+  <input id="phone" name="phone" type="number">
+	<label for="description">description</label>
+  <input id="description" name="description" type="text">
+  <button type="submit" class="btn btn-success">Add</button>
+</form>
+
+<h3>New Client:</h3>
+
+<form action="/clients" method="post">
+<label for="stylistId">Select a List</label>
+<select id='stylistId' name='stylistId' type='text'>
+#foreach($stylist in $stylists)
+	<option value="$stylist.getId()">$stylist.getName()</option>
+#end
+</select>
+
+  <div class="form-group">
+	<label for="name">Name</label>
+	<input id="name" name="name" type="name" class="form-control">
+    <label for="style">Style</label>
+    <input id="style" name="style" type="text" class="form-control">
+		<label for="phone">Phone number</label>
+    <input id="phone" name="phone" type="phone" class="form-control">
+
+  </div>
+
+  <button type="submit" class="btn btn-success">Add Client</button>
+</form>
+
+<a href="/stylists">View Your Stylist</a>
+<a href="/stylists/new">Add a Stylist</a>

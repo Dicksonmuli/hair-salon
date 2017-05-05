@@ -67,5 +67,14 @@ public static List<Stylist> all() {
 			return this.getName().equals(newStylist.getName()) && this.getId() == newStylist.getId() && this.getPhoneNumber() == newStylist.getPhoneNumber() && this.getDescription().equals(newStylist.getDescription());
 		}
 }
+//deleting from the db
+public void delete() {
+	try(Connection con = DB.sql2o.open()) {
+		String sql = "DELETE FROM stylists WHERE id= :id;";
+		con.createQuery(sql)
+		.addParameter("id", id)
+		.executeUpdate();
+	}
+}
 
 }

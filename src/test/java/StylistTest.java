@@ -88,8 +88,9 @@ public class StylistTest {
 	//deletes a stylist
 	@Test
   public void delete_deletesStylist_true() {
-    int stylistId = stylist2.getId();
-    Stylist.delete(stylistId);
+  	stylist1.save();
+		int stylistId = stylist1.getId();
+    stylist1.delete();
     assertEquals(null, Stylist.find(stylistId));
   }
 

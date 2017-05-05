@@ -21,21 +21,19 @@ public class ClientTest {
 	public void Client_instanciatesCorrectly_true() {
 		assertTrue(client1  instanceof Client);
 	}
-	// assigning each task a description and then retrieve it
+	// instantiates with a name
 	@Test
-	public void Task_instantiatesWithName_String() {
-		assertEquals("Customer1", client1.getDescription());
+	public void getName_instantiatesWithName_String() {
+		assertEquals("Customer1", client1.getName());
 	}
-	// assigning each task a description and then retrieve it
+	// instantiates with a phone number
 	@Test
-	public void Task_instantiatesWithDescription_String() {
-		Task myTask = new Task("Mow the lawn", 1);
-		assertEquals("Mow the lawn", client1.getDescription());
+	public void getPhone_instantiatesWithDescription_String() {
+		assertEquals(23, client1.getPhone());
 	}
-	// assigning each task a description and then retrieve it
+	// instantiates with hair style
 	@Test
-	public void Task_instantiatesWithDescription_String() {
-		Task myTask = new Task("Mow the lawn", 1);
-		assertEquals("Mow the lawn", client1.getDescription());
+	public void getStyle_instantiatesWithDescription_String() {
+		assertEquals("Weave", client1.getStyle());
 	}
 }

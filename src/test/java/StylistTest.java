@@ -67,23 +67,12 @@ public class StylistTest {
 	}
 	//all method returns all the instances
 	@Test
-			public void all_returnsAllInstancesOfCategory_true() {
+			public void all_returnsAllInstancesOfStylist_true() {
 				stylist1.save();
 				stylist2.save();
 				assertEquals(true, Stylist.all().get(0).equals(stylist1));
 				assertEquals(true, Stylist.all().get(1).equals(stylist2));
 			}
-	//returns the cliests belonging to a stylist
-	// @Test
-	// 	public void getTasks_retrievesALlTasksFromDatabase_tasksList() {
-	// 		stylist1.save();
-	// 		Client client1 = new Task("Mow the lawn", stylist1.getId());
-	// 		client1.save();
-	// 		Client client2 = new Task("Do the dishes", stylist1.getId());
-	// 		client2.save();
-	// 		Client[] clients = new Client[] { client1, client2 };
-	// 		assertTrue(myCategory.getTasks().containsAll(Arrays.asList(clients)));
-	// 	}
 
 	//deletes a stylist
 	@Test
@@ -93,6 +82,19 @@ public class StylistTest {
     stylist1.delete();
     assertEquals(null, Stylist.find(stylistId));
   }
+
+	//returns the clients belonging to a stylist
+	@Test
+		public void getTasks_retrievesALlTasksFromDatabase_tasksList() {
+			stylist1.save();
+			Client client1 = new Client("name", 3, "my style", stylist1.getId());
+			client1.save();
+			Client client2 = new Client("name", 56, "my style", stylist1.getId());
+			client2.save();
+			Client[] clients = new Client[] { client1, client2 };
+			assertTrue(stylist1.getClients().containsAll(Arrays.asList(clients)));
+}
+
 	//check updating stylist
 	// @Test
 	// public void update_updatesStylistDescription_true() {

@@ -52,18 +52,24 @@ public static Stylist find(int id) {
 	}
 }
 
-public static List<Stylist> all() {
-	 String sql = "SELECT id, name, phone, description FROM stylists";
-	 try(Connection con = DB.sql2o.open()) {
-		 return con.createQuery(sql).executeAndFetch(Stylist.class);
+public List<Client> getClients() {
+	try(Connection con = DB.sql2o.open()) {
+		String sql = "SELECT * FROM clients where stylistId=:id";
+		return con.createQuery(sql).addParameter("id", this.id).executeAndFetch(Client.class);
 	 }
  }
+ public static List<Stylist> all() {
+		String sql = "SELECT id, name, phone, description FROM stylists";
+		try(Connection con = DB.sql2o.open()) {
+			return con.createQuery(sql).executeAndFetch(Stylist.class);
+		}
+	}
  @Override
-	public boolean equals(Object otherCategory) {
-		if (!(otherCategory instanceof Stylist)) {
+	public boolean equals(Object otherStylist) {
+		if (!(otherStylist instanceof Stylist)) {
 			return false;
 		} else {
-			Stylist newStylist = (Stylist) otherCategory;
+			Stylist newStylist = (Stylist) otherStylist;
 			return this.getName().equals(newStylist.getName()) && this.getId() == newStylist.getId() && this.getPhoneNumber() == newStylist.getPhoneNumber() && this.getDescription().equals(newStylist.getDescription());
 		}
 }

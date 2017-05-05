@@ -9,8 +9,8 @@ public class ClientTest {
 
 	@Before
 	public void instance() {
-		client1 = new Client("Customer1", 23, "Weave");
-		client2 = new Client("Customer2", 24, "Weave");
+		client1 = new Client("Customer1", 23, "Weave", 1);
+		client2 = new Client("Customer2", 24, "Weave", 1);
 	}
 
 	@Rule
@@ -41,4 +41,16 @@ public class ClientTest {
 	public void getId_tasksInstantiateWithAnID_greaterthano() {
 		assertTrue(client1.getId() > 0);
 	}
+	//returns a client of a certain id
+	@Test
+	public void find_returnsClientWithSameId_client2() {
+		assertEquals(Client.find(client2.getId()), client2);
+	}
+	//returns all instanceof a client
+	@Test
+	public void all_returnsAllInstancesOfClient_true() {
+		assertTrue(Client.all().get(0).equals(client1));
+		assertTrue(Client.all().get(1).equals(client2));
+	}
+
 }

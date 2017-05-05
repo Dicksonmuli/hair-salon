@@ -76,5 +76,15 @@ public void delete() {
 		.executeUpdate();
 	}
 }
+//updating variables in the table
+public void update(String name, int phone, String description) {
+try(Connection con = DB.sql2o.open()) {
+	String sql = "UPDATE stylists SET name = :name, phone = :phone, description = :description WHERE id = :id";
+	con.createQuery(sql)
+		.addParameter("description", description)
+		.addParameter("id", id)
+		.executeUpdate();
+}
+}
 
 }

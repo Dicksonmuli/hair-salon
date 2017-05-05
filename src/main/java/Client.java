@@ -80,12 +80,12 @@ public class Client {
 
 public void update(String description) {
 	try(Connection con = DB.sql2o.open()) {
-		String sql = "UPDATE clients SET name = :name   WHERE id = :id;";
+		String sql = "UPDATE clients SET name = :name, phone = :phone, style = :style, stylistId = :stylistId  WHERE id = :id";
 		con.createQuery(sql)
-			// .addParameter("phone", this.phone)
-			.addParameter("name", this.name)
-			// .addParameter("style", this.style)
-			// .addParameter("stylistId", this.stylistId)
+			.addParameter("phone", phone)
+			.addParameter("name", name)
+			.addParameter("style", style)
+			.addParameter("stylistId", stylistId)
 			.addParameter("id", id)
 			.executeUpdate();
 	}

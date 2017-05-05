@@ -62,12 +62,12 @@ public class ClientTest {
 		assertEquals(savedClient.getStylistId(), testStylist.getId());
 	}
 	//update  clients
-	// @Test
-	// public void update_updatesClientName_true() {
-	// 	client1.save();
-	// 	client1.update("abuja");
-	// 	assertEquals("abuja", Client.find(client1.getId()).getName());
-	// }
+	@Test
+	public void update_updatesClientName_true() {
+		client1.save();
+		client1.update("abuja");
+		assertEquals("abuja", Client.find(client1.getId()).getName());
+	}
 	@Test
 public void delete_deletesTask_true() {
   client1.save();

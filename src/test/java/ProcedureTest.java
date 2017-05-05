@@ -40,8 +40,8 @@ public class ProcedureTest {
 
   @Test
   public void setPrice_updatesPrice_Float() {
-    procedure.setPrice(1600.00f);
-    assertEquals(1600.0, Procedure.find(procedure.getId()).getPrice(), 0.005);
+    procedure.setPrice(1700.00f);
+    assertEquals(1700.0, Procedure.find(procedure.getId()).getPrice(), 0.005);
   }
 
   @Test

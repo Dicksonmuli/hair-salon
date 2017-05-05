@@ -36,4 +36,9 @@ public class ClientTest {
 	public void getStyle_instantiatesWithDescription_String() {
 		assertEquals("Weave", client1.getStyle());
 	}
+	//getId returns an id of > 0
+	@Test
+	public void getId_tasksInstantiateWithAnID_greaterthano() {
+		assertTrue(client1.getId() > 0);
+	}
 }

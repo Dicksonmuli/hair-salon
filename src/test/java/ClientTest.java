@@ -52,5 +52,28 @@ public class ClientTest {
 		assertTrue(Client.all().get(0).equals(client1));
 		assertTrue(Client.all().get(1).equals(client2));
 	}
+	@Test
+	public void save_savesStyleIdIntoDB_true() {
+	 Stylist testStylist = new Stylist("Minne", 4, "chores");
+		testStylist.save();
+		Client client1 = new Client("Minnem", 23, "stylenew", testStylist.getId());
+		client1.save();
+		Client savedClient = Client.find(client1.getId());
+		assertEquals(savedClient.getStylistId(), testStylist.getId());
+	}
+	//update  clients
+	// @Test
+	// public void update_updatesClientName_true() {
+	// 	client1.save();
+	// 	client1.update("abuja");
+	// 	assertEquals("abuja", Client.find(client1.getId()).getName());
+	// }
+	@Test
+public void delete_deletesTask_true() {
+  client1.save();
+  int clientId = client1.getId();
+  client1.delete();
+  assertEquals(null, Client.find(clientId));
+}
 
 }

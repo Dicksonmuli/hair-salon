@@ -45,7 +45,7 @@ public class Client {
 		return style;
 	}
 	//returns the client that the client belong
-	public int getClientId() {
+	public int getStylistId() {
 		return stylistId;
 	}
 
@@ -80,12 +80,12 @@ public class Client {
 
 public void update(String description) {
 	try(Connection con = DB.sql2o.open()) {
-		String sql = "UPDATE clients SET name = :name, phone = :phone, style = :style  WHERE id = :id";
+		String sql = "UPDATE clients SET name = :name   WHERE id = :id;";
 		con.createQuery(sql)
-			.addParameter("phone", this.phone)
+			// .addParameter("phone", this.phone)
 			.addParameter("name", this.name)
-			.addParameter("style", this.style)
-			.addParameter("stylistId", this.stylistId)
+			// .addParameter("style", this.style)
+			// .addParameter("stylistId", this.stylistId)
 			.addParameter("id", id)
 			.executeUpdate();
 	}

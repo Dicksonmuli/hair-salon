@@ -2,6 +2,7 @@ import java.time.LocalDateTime;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.sql2o.*;
+import java.util.Arrays;
 
 public class StylistTest {
 
@@ -12,8 +13,8 @@ public class StylistTest {
 	private Stylist stylist2;
 	@Before
 	public void instance() {
-		stylist1 = new Stylist(1, "Yvone", 254, "works well");
-		stylist2 = new Stylist(1, "Yvone", 254, "works well");
+		stylist1 = new Stylist( "Yvone", 2, "works well");
+		stylist2 = new Stylist( "Yvone", 3, "works well");
 	}
 
 	//creating an instance of Stylist
@@ -21,11 +22,6 @@ public class StylistTest {
 	@Test
 	public void Stylist_instantiatesCorrectly_true() {
 		assertTrue(stylist1 instanceof Stylist);
-	}
-	//assert if the getId returns id
-	@Test
-	public void Stylist_getIdReturnsIdOfStylist_true() {
-		assertEquals(1, stylist1.getId());
 	}
 	//assert if the getName method returns name
 	@Test
@@ -35,11 +31,66 @@ public class StylistTest {
 	//assert if the getNumber returns number
 	@Test
 	public void GetNumberReturnsPhoneNumberOfStylist_true() {
-		assertEquals(254, stylist1.getNumber());
+		assertEquals(2, stylist1.getPhoneNumber());
 	}
 	//assert if the getDescription method returns description
 	@Test
 	public void getDescriptionReturnsDescriptionOfStylist_true() {
 		assertEquals("works well", stylist1.getDescription());
 	}
+	//gets the correct stylist id from db
+	@Test
+  public void save_returnsIdFromDatabase_true() {
+		stylist1.save();
+    assertEquals(true, stylist1.getId()>0);
+  }
+
+	// assert if find method returns stylists with same id
+	@Test
+	public void find_returnsStylistWithSameId_stylists2() {
+		stylist1.save();
+		stylist2.save();
+		assertEquals(Stylist.find(stylist2.getId()), stylist2);
+	}
+	//saving to DB
+	@Test
+     public void save_savesIntoDatabase_true() {
+       stylist1.save();
+       assertTrue(Stylist.all().get(0).equals(stylist1));
+  }
+	// equal entities
+	@Test
+	public void equals_returnsTrueIfNamesAretheSame() {
+		Stylist stylist1 = new Stylist( "Yvone", 2, "works well");
+		Stylist stylist2 = new Stylist( "Yvone", 2, "works well");
+		assertTrue(stylist1.equals(stylist2));
+	}
+	//all method returns all the instances
+	@Test
+			public void all_returnsAllInstancesOfCategory_true() {
+				stylist1.save();
+				stylist2.save();
+				assertEquals(true, Stylist.all().get(0).equals(stylist1));
+				assertEquals(true, Stylist.all().get(1).equals(stylist2));
+			}
+	//returns the cliests belonging to a stylist
+	// @Test
+	// 	public void getTasks_retrievesALlTasksFromDatabase_tasksList() {
+	// 		stylist1.save();
+	// 		Client client1 = new Task("Mow the lawn", stylist1.getId());
+	// 		client1.save();
+	// 		Client client2 = new Task("Do the dishes", stylist1.getId());
+	// 		client2.save();
+	// 		Client[] clients = new Client[] { client1, client2 };
+	// 		assertTrue(myCategory.getTasks().containsAll(Arrays.asList(clients)));
+	// 	}
+
+	//deletes a stylist
+	@Test
+  public void delete_deletesStylist_true() {
+    int stylistId = stylist2.getId();
+    Stylist.delete(stylistId);
+    assertEquals(null, Stylist.find(stylistId));
+  }
+
 }

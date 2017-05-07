@@ -1,4 +1,4 @@
-<h1>Welcome to the Hair Salon Application</h1>
+<h2>Welcome to the Hair Salon </h2>
 
 <h2> All Clients: </h2>
 
@@ -12,8 +12,8 @@
 #else
   <p>There are no Stylists in your salon</p>
 #end
-
-<h2>Add stylist:</h2>
+<div id="myDIV">
+<button onclick="myFunction()">Add stylist</button>
 
 <form action="/stylists" method="post">
   <label for="name">Name</label>
@@ -25,7 +25,7 @@
   <button type="submit" class="btn btn-success">Add</button>
 </form>
 
-<h3>New Client:</h3>
+<h3>add New Client:</h3>
 
 <form action="/clients" method="post">
 <label for="stylistId">Select a List</label>
@@ -47,6 +47,18 @@
 
   <button type="submit" class="btn btn-success">Add Client</button>
 </form>
+</div>
 
 <a href="/stylists">View Your Stylist</a>
 <a href="/stylists/new">Add a Stylist</a>
+
+<script>
+function myFunction() {
+    var x = document.getElementById('myDIV');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+</script>

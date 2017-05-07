@@ -3,14 +3,14 @@
     <h2>Our Services</h2>
     #foreach($procedure in $procedures)
       <div>
-        <h3><a href="/procedures/$procedure.getId()">$procedure.getDescription() - ksh $procedure.getPrice()</a></h3>
+        <h3><a href="/procedures/$procedure.getId()">$procedure.getDescription() - Ksh $procedure.getPrice()</a></h3>
       </div>
     #end
   </div>
     <div class="col-xs-4">
     #if($procedure)
     <h2>Style Added</h2>
-    <p>$procedure: ksh $price</p>
+    <p>$procedure: Ksh $price</p>
     #end
     <h2>Add Style</h2>
     <form action='/procedures' method="post">

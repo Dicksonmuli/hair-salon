@@ -3,8 +3,16 @@
     <h2>Update Stylist</h2>
     <form action='/stylists/$stylist.getId()' method="post">
       <div class="form-group">
-        <label for="stylist">Stylist: </label>
-        <input id="stylist" name="stylist" class="form-control" type="text" value="$stylist.getName()">
+        <label for="name">Name: </label>
+        <input id="name" name="name" class="form-control" type="text" value="$stylist.getName()">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number: </label>
+        <input id="phone" name="phone" class="form-control" type="text" value="$stylist.getPhone()">
+      </div>
+      <div class="form-group">
+        <label for="description">Description: </label>
+        <input id="description" name="description" class="form-control" type="text" value="$stylist.getName()">
       </div>
       <button type='submit' class='btn'>Update Stylist</button>
     </form>
@@ -14,9 +22,11 @@
     <h3>Clients</h3>
     <ul>
     #foreach($client in $clients)
-      <li><a href="/clients/$client.getId()">$client.getLastName(), $client.getFirstName()</a></li>
+      <li><a href="/clients/$client.getId()">$client.getName()</a></li>
     #end
     </ul>
-    <p><a href="/delete/stylists/$stylist.getId()">delete stylist</a></p>
+    <div style="background-color: orange">
+    <p><a href="/delete/stylists/$stylist.getId()">Delete stylist</a></p>
+    <div>
   </div>
 </div>

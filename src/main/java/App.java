@@ -56,6 +56,7 @@ get("/procedures", (request, response) -> {
 		 model.put("procedure", Procedure.find(id));
 		 model.put("template", "templates/edit-procedure.vtl");
 		 return new ModelAndView(model, layout);
+		 
 	 }, new VelocityTemplateEngine());
 //adding a procedure
 	 post("/procedures/:id", (request, response) -> {

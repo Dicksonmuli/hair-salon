@@ -53,9 +53,9 @@ public class Appointment {
   }
 
   public static Appointment find(int id) {
-    try(Connection cn = DB.sql2o.open()) {
+    try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM appointments WHERE id=:id";
-      Appointment appointment = cn.createQuery(sql)
+      Appointment appointment = con.createQuery(sql)
         .addParameter("id", id)
         .executeAndFetchFirst(Appointment.class);
       return appointment;
@@ -65,7 +65,7 @@ public class Appointment {
   public static List<Appointment> all() {
     String sql = "SELECT * FROM appointments ORDER BY time";
     try(Connection con = DB.sql2o.open()) {
-      return c0n.createQuery(sql).executeAndFetch(Appointment.class);
+      return con.createQuery(sql).executeAndFetch(Appointment.class);
     }
   }
 

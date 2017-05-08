@@ -95,7 +95,7 @@ public class App {
 		 model.put("template", "templates/procedure.vtl");
 		 return new ModelAndView(model, layout);
 	 }, new VelocityTemplateEngine());
-//deleting procedures
+//deleting procedures/styles
 	 get("/delete/procedures/:id", (request, response) -> {
 		 Map<String, Object> model = new HashMap<String, Object>();
 		 int id = Integer.parseInt(request.params(":id"));
@@ -104,7 +104,7 @@ public class App {
 		 model.put("template", "templates/procedure.vtl");
 		 return new ModelAndView(model, layout);
 	 }, new VelocityTemplateEngine());
-//adding procedures
+//adding procedures/styles
 	 post("/procedures", (request, response) -> {
 		 Map<String, Object> model = new HashMap<String, Object>();
 		 Procedure procedure = new Procedure(request.queryParams("procedure"), Float.parseFloat(request.queryParams("price")));

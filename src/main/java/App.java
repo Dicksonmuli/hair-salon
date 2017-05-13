@@ -29,15 +29,15 @@ public class App {
 //new stylist route
 	get("/stylists/new", (request, response) -> {
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("template", "templates/stylists-form.vtl");
+		model.put("template", "templates/stylist-form.vtl");
 		return new ModelAndView(model, layout);
 	}, new VelocityTemplateEngine());
 //post method to add a stylist
 get("/stylists", (request, response)  -> {
 	Map<String, Object> model = new HashMap<String, Object>();
 	String name = request.queryParams("name");
-	Integer phone = ;
-	int = request.queryParams("name");
+	Integer phone = Integer.parseInt(request.queryParams("phone"));
+	String description = request.queryParams("description");
 	model.put("stylists", Stylist.all());
 	model.put("template", "templates/index.vtl");
 	return new ModelAndView(model, layout);
@@ -56,7 +56,7 @@ get("/procedures", (request, response) -> {
 		 model.put("procedure", Procedure.find(id));
 		 model.put("template", "templates/edit-procedure.vtl");
 		 return new ModelAndView(model, layout);
-		 
+
 	 }, new VelocityTemplateEngine());
 //adding a procedure
 	 post("/procedures/:id", (request, response) -> {

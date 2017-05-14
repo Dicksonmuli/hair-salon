@@ -13,8 +13,8 @@ public class StylistTest {
 	private Stylist stylist2;
 	@Before
 	public void instance() {
-		stylist1 = new Stylist( "Yvone", 2, "works well");
-		stylist2 = new Stylist( "Yvone", 3, "works well");
+		stylist1 = new Stylist( "Yvone", "32", "works well");
+		stylist2 = new Stylist( "Yvone", "34", "works well");
 	}
 
 	//creating an instance of Stylist
@@ -31,7 +31,7 @@ public class StylistTest {
 	//assert if the getNumber returns number
 	@Test
 	public void GetNumberReturnsPhoneNumberOfStylist_true() {
-		assertEquals(2, stylist1.getPhoneNumber());
+		assertEquals("32", stylist1.getPhoneNumber());
 	}
 	//assert if the getDescription method returns description
 	@Test
@@ -61,8 +61,8 @@ public class StylistTest {
 	// equal entities
 	@Test
 	public void equals_returnsTrueIfNamesAretheSame() {
-		Stylist stylist1 = new Stylist( "Yvone", 2, "works well");
-		Stylist stylist2 = new Stylist( "Yvone", 2, "works well");
+		Stylist stylist1 = new Stylist( "Yvone", "32", "works well");
+		Stylist stylist2 = new Stylist( "Yvone", "32", "works well");
 		assertTrue(stylist1.equals(stylist2));
 	}
 	//all method returns all the instances
@@ -85,23 +85,23 @@ public class StylistTest {
 
 	//returns the clients belonging to a stylist
 	@Test
-		public void getTasks_retrievesALlTasksFromDatabase_tasksList() {
+		public void getClients_retrievesALlClientsFromDatabase_tasksList() {
 			stylist1.save();
-			Client client1 = new Client("name", 3, "my style", stylist1.getId());
+			Client client1 = new Client("name","32", "my style", stylist1.getId());
 			client1.save();
-			Client client2 = new Client("name", 56, "my style", stylist1.getId());
+			Client client2 = new Client("name", "327", "my style", stylist1.getId());
 			client2.save();
 			Client[] clients = new Client[] { client1, client2 };
 			assertTrue(stylist1.getClients().containsAll(Arrays.asList(clients)));
 }
 
-	//check updating stylist
-	// @Test
-	// public void update_updatesStylistDescription_true() {
-	// 	stylist1.save();
-	// 	stylist1.update("Lauryne", 1, "Dont work well");
-	// 	assertEquals("Lauryne", Stylist.find(stylist1.getId()).getName());
-	// 	assertEquals(1, Stylist.find(stylist1.getId()).getPhoneNumber());
-	// 	assertEquals("Dont work well", Stylist.find(stylist1.getId()).getDescription());
-	// }
+	// check updating stylist
+	@Test
+	public void update_updatesStylistDescription_true() {
+		stylist1.save();
+		stylist1.update("Lauryne", "32", "Dont work well");
+		assertEquals("Lauryne", Stylist.find(stylist1.getId()).getName());
+		assertEquals("32", Stylist.find(stylist1.getId()).getPhoneNumber());
+		assertEquals("Dont work well", Stylist.find(stylist1.getId()).getDescription());
+	}
 }

@@ -5,10 +5,10 @@ import java.util.List;
 public class Stylist {
 	private int id;
 	private String name;
-	private int phone;
+	private String phone;
 	private String description;
 
-	public Stylist(String name, int phone, String description) {
+	public Stylist(String name, String phone, String description) {
 		this.name = name;
 		this.phone = phone;
 		this.description = description;
@@ -22,7 +22,7 @@ public class Stylist {
 		return name;
 	}
 //returns id of the stylist
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phone;
 	}
 //returns id of the stylist
@@ -51,17 +51,20 @@ public static Stylist find(int id) {
 		return stylist;
 	}
 }
-
+//returns all the clients assigned to this stylist
 public List<Client> getClients() {
 	try(Connection con = DB.sql2o.open()) {
 		String sql = "SELECT * FROM clients where stylistId=:id";
-		return con.createQuery(sql).addParameter("id", this.id).executeAndFetch(Client.class);
+		return con.createQuery(sql)
+		.addParameter("id", this.id)
+		.executeAndFetch(Client.class);
 	 }
  }
  public static List<Stylist> all() {
 		String sql = "SELECT id, name, phone, description FROM stylists";
 		try(Connection con = DB.sql2o.open()) {
-			return con.createQuery(sql).executeAndFetch(Stylist.class);
+			return con.createQuery(sql)
+			.executeAndFetch(Stylist.class);
 		}
 	}
  @Override
@@ -70,7 +73,8 @@ public List<Client> getClients() {
 			return false;
 		} else {
 			Stylist newStylist = (Stylist) otherStylist;
-			return this.getName().equals(newStylist.getName()) && this.getId() == newStylist.getId() && this.getPhoneNumber() == newStylist.getPhoneNumber() && this.getDescription().equals(newStylist.getDescription());
+			return this.getName().equals(newStylist.getName()) && this.getPhoneNumber().equals(newStylist.getPhoneNumber()) && this.getDescription().equals(newStylist.getDescription()) &
+			this.getId() == newStylist.getId();
 		}
 }
 //deleting from the db
@@ -83,11 +87,13 @@ public void delete() {
 	}
 }
 //updating variables in the table
-public void update(String name, int phone, String description) {
+public void update(String name, String phone, String description) {
 try(Connection con = DB.sql2o.open()) {
 	String sql = "UPDATE stylists SET name = :name, phone = :phone, description = :description WHERE id = :id";
 	con.createQuery(sql)
 		.addParameter("description", description)
+		.addParameter("name", name)
+		.addParameter("phone", phone)
 		.addParameter("id", id)
 		.executeUpdate();
 }

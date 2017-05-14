@@ -9,8 +9,8 @@ public class ClientTest {
 
 	@Before
 	public void instance() {
-		client1 = new Client("Customer1", 23, "Weave", 1);
-		client2 = new Client("Customer2", 24, "Weave", 1);
+		client1 = new Client("Customer1", "23", "Weave", 1);
+		client2 = new Client("Customer2", "24", "Weave", 1);
 	}
 
 	@Rule
@@ -28,12 +28,12 @@ public class ClientTest {
 	}
 	// instantiates with a phone number
 	@Test
-	public void getPhone_instantiatesWithDescription_String() {
-		assertEquals(23, client1.getPhone());
+	public void getPhone_instantiatesWithPhone_String() {
+		assertEquals("23", client1.getPhone());
 	}
 	// instantiates with hair style
 	@Test
-	public void getStyle_instantiatesWithDescription_String() {
+	public void getStyle_instantiatesWithStyle_String() {
 		assertEquals("Weave", client1.getStyle());
 	}
 	//getId returns an id of > 0
@@ -54,9 +54,9 @@ public class ClientTest {
 	}
 	@Test
 	public void save_savesStyleIdIntoDB_true() {
-	 Stylist testStylist = new Stylist("Minne", 4, "chores");
+	 Stylist testStylist = new Stylist("Minne", "23", "chores");
 		testStylist.save();
-		Client client1 = new Client("Minnem", 23, "stylenew", testStylist.getId());
+		Client client1 = new Client("Minnem", "23", "stylenew", testStylist.getId());
 		client1.save();
 		Client savedClient = Client.find(client1.getId());
 		assertEquals(savedClient.getStylistId(), testStylist.getId());
@@ -65,11 +65,11 @@ public class ClientTest {
 	@Test
 	public void update_updatesClientName_true() {
 		client1.save();
-		client1.update("description", "Viv", 67, "weeve", 1);
+		client1.update("Viv", "23", "weeve");
 		assertEquals("Viv", Client.find(client1.getId()).getName());
 	}
 	@Test
-public void delete_deletesTask_true() {
+public void delete_deletesClient_true() {
   client1.save();
   int clientId = client1.getId();
   client1.delete();

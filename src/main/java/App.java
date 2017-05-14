@@ -32,6 +32,16 @@ public class App {
 		model.put("template", "templates/stylist-form.vtl");
 		return new ModelAndView(model, layout);
 	}, new VelocityTemplateEngine());
+	post("/stylists", (request, response) -> {
+		Map<String, Object> model = new HashMap<String, Object>();
+		String name = request.queryParams("name");
+		String phone = request.queryParams("phone");
+		String description = request.queryParams("description");
+		Stylist newStylist = new Stylist(name, phone, description);
+		newStylist.save();
+		model.put("template", "templates/category-success.vtl");
+		return new ModelAndView(model, layout);
+		}, new VelocityTemplateEngine());
 //post method to add a stylist
 get("/stylists", (request, response)  -> {
 	Map<String, Object> model = new HashMap<String, Object>();

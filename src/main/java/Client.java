@@ -5,14 +5,14 @@ import org.sql2o.*;
 
 public class Client {
 	private String name;
-	private int phone;
+	private String phone;
 	private String style;
 	private int id;
 	private int stylistId;
 
-	public Client(String name, int number, String style, int stylistId) {
+	public Client(String name, String pnone, String style, int stylistId) {
 		this.name = name;
-		this.phone = number;
+		this.phone = phone;
 		this.style = style;
 		this.stylistId = stylistId;
 
@@ -37,7 +37,7 @@ public class Client {
 		return name;
 	}
 	//returns phone number
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 	//returns the clients hair style
@@ -55,7 +55,9 @@ public class Client {
 			return false;
 		} else {
 			Client client3 = (Client) anotherClient;
-			return this.getName().equals(client3.getName()) && this.getId() == client3.getId() && this.getPhone() == client3.getPhone() && this.getStyle().equals(client3.getStyle());
+			return this.getName().equals(client3.getName()) &&
+			this.getStylistId() == client3.getStylistId() && this.getPhone().equals(client3.getPhone()) && this.getStyle().equals(client3.getStyle()) &&
+			this.getId() == client3.getId();
 		}
 		}
 	public static List<Client> all() {
@@ -78,14 +80,13 @@ public class Client {
     }
   }
 
-public void update(String description, String name, int phone, String style, int stylistId) {
+public void update(String name, String phone, String style) {
 	try(Connection con = DB.sql2o.open()) {
-		String sql = "UPDATE clients SET name = :name, phone = :phone, style = :style, stylistId = :stylistId  WHERE id = :id";
+		String sql = "UPDATE clients SET (name, phone, style) = (:name, :phone, :style)  WHERE id = :id";
 		con.createQuery(sql)
 			.addParameter("phone", phone)
 			.addParameter("name", name)
 			.addParameter("style", style)
-			.addParameter("stylistId", stylistId)
 			.addParameter("id", id)
 			.executeUpdate();
 	}

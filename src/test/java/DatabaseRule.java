@@ -1,6 +1,7 @@
 import org.junit.rules.ExternalResource;
 import org.sql2o.*;
 
+// overriding before and after method annotations
 public class DatabaseRule extends ExternalResource {
 	@Override
 	protected void before() {
@@ -11,8 +12,8 @@ public class DatabaseRule extends ExternalResource {
     try(Connection con = DB.sql2o.open()) {
 			String deleteClientsQuery = "DELETE FROM clients *;";
 				 String deleteStylistsQuery = "DELETE FROM stylists *;";
-				 String deleteProceduresQuery = "DELETE FROM stylists *;";
-				 String deleteAppointmentQuery = "DELETE FROM stylists *;";
+				 String deleteProceduresQuery = "DELETE FROM procedures *;";
+				 String deleteAppointmentQuery = "DELETE FROM appointments *;";
 				 con.createQuery(deleteClientsQuery).executeUpdate();
 				 con.createQuery(deleteStylistsQuery).executeUpdate();
 				 con.createQuery(deleteProceduresQuery).executeUpdate();

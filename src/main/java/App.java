@@ -86,7 +86,41 @@ public class App {
 		model.put("template", "templates/stylist.vtl");
 		return new ModelAndView(model, layout);
 	}, new VelocityTemplateEngine());
+	//  dynamic route for every client
+	get("/stylist/:stylistId/clients/:id", (request, response) -> {
+		 Map<String, Object> model = new HashMap<String, Object>();
+		 Stylist stylist = Stylist.find(Integer.parseInt(request.params(":stylistId")));
+		 Client client = Client.find(Integer.parseInt(request.params(":id")));
+		 model.put("stylist", stylist);
+		 model.put("client", client);
+		 model.put("template", "templates/edit-client.vtl");
+		 return new ModelAndView(model, layout);
+	 }, new VelocityTemplateEngine());
+	 //deleting a client
+	 get("/delete/clients/:id", (request, response) -> {
+		 Map<String, Object> model = new HashMap<String, Object>();
+		 int id = Integer.parseInt(request.params(":id"));
+		 Client client = Client.find(id);
+		 client.delete();
+		 response.redirect("/stylists");
+		 model.put("template", "templates/edit-client.vtl");
+		 return new ModelAndView(model, layout);
+	 }, new VelocityTemplateEngine());
+	 //updating a task
+	 post("/stylist/:stylistId/clients/:id", (request, response) -> {
+			Map<String, Object> model = new HashMap<String, Object>();
+			Client client = Client.find(Integer.parseInt(request.params("id")));
+			String name = request.queryParams("name");
+			String style = request.queryParams("style");
+			int phone = Integer.parseInt(request.queryParams("phone"));
 
+			int id = Integer.parseInt(request.params("stylistId"));
+			Stylist stylist = Stylist.find(client.getStylistId());
+			client.update(name, phone, style, id);
+			String url = String.format("/stylist/%d/Clients/%d", stylist.getId(), client.getId());
+			response.redirect(url);
+			return new ModelAndView(model, layout);
+		}, new VelocityTemplateEngine());
 	get("/procedures", (request, response) -> {
 			 Map<String, Object> model = new HashMap<String, Object>();
 			 model.put("procedures", Procedure.all());
@@ -130,6 +164,41 @@ public class App {
 		 model.put("template", "templates/procedure.vtl");
 		 return new ModelAndView(model, layout);
 	 }, new VelocityTemplateEngine());
+
+//adding an appointmet
+	 post("/appointments", (request, response) -> {
+		 Map<String, Object> model = new HashMap<String, Object>();
+		 int id = Integer.parseInt(request.params(":id"));
+		 Procedure.find(id).setDescription(request.queryParams("first"));
+		 Procedure.find(id).setPrice(Float.parseFloat(request.queryParams("age")));
+		 model.put("procedures", Appointment.all());
+		 model.put("template", "templates/appointment.vtl");
+		 return new ModelAndView(model, layout);
+	 }, new VelocityTemplateEngine());
+//deleting appointments
+	 get("/delete/appointments/:id", (request, response) -> {
+		 Map<String, Object> model = new HashMap<String, Object>();
+		 int id = Integer.parseInt(request.params(":id"));
+		 Procedure.delete(id);
+		 response.redirect("/appointments");
+		 model.put("template", "templates/appointment.vtl");
+		 return new ModelAndView(model, layout);
+	 }, new VelocityTemplateEngine());
+//adding appointment
+	 post("/appointments", (request, response) -> {
+		 Map<String, Object> model = new HashMap<String, Object>();
+
+		 model.put("template", "templates/appointment.vtl");
+		 return new ModelAndView(model, layout);
+	 }, new VelocityTemplateEngine());
+	//  all appointments
+	get("/appointments", (request, response) -> {
+			 Map<String, Object> model = new HashMap<String, Object>();
+			 model.put("appointment", Appointment.all());
+			 model.put("template", "templates/appointment.vtl");
+			 return new ModelAndView(model, layout);
+		 }, new VelocityTemplateEngine());
+
 //contacts
 get("/contacts", (request, response)  -> {
 	Map<String, Object> model = new HashMap<String, Object>();

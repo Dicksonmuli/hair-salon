@@ -78,7 +78,7 @@ public class Client {
     }
   }
 
-public void update(String description, String name, int phone, String style, int stylistId) {
+public void update(String name, int phone, String style, int stylistId) {
 	try(Connection con = DB.sql2o.open()) {
 		String sql = "UPDATE clients SET name = :name, phone = :phone, style = :style, stylistId = :stylistId  WHERE id = :id";
 		con.createQuery(sql)

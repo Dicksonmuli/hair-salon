@@ -14,7 +14,7 @@ public class Appointment {
     this.procedureid = procedureid;
 //saves an instance when created
     try(Connection cn = DB.sql2o.open()) {
-      String sql = "INSERT INTO appointments (time, clientid, procedureid) VALUES (:time, :clientid, :procedureid)";
+      String sql = "INSERT INTO appointments (time, clientid, procedureid) VALUES (now(), :clientid, :procedureid)";
       this.id = (int) cn.createQuery(sql, true)
         .addParameter("time", this.time)
         .addParameter("clientid", this.clientid)

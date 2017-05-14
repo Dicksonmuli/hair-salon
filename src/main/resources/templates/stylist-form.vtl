@@ -1,0 +1,62 @@
+<div class="row">
+	<div class="box">
+		<div class="col-lg-12">
+			<hr>
+			<h2 class="intro-text text-center">Beautiful boxes <strong>to showcase your content</strong>
+								</h2>
+			<hr>
+			<img class="img-responsive img-border img-left" src="images/img2.jpg" alt="">
+			<hr class="visible-xs">
+			<div class="col-mx-6 col-offset-6">
+
+			<form action="/stylists" method="post">
+			  <label for="name">Name</label>
+			  <input id="name" name="name" type="text" class="form-control">
+
+				<label for="phone">phone</label>
+			  <input id="phone" name="phone" type="number" class="form-control">
+
+				<label for="description">description</label>
+			  <input id="description" name="description" type="text" class="form-control">
+
+			  <button type="submit" class="btn btn-success">Add</button>
+			</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+<h3>add New Client:</h3>
+
+<form action="/clients" method="post">
+<label for="stylistId">Select a List</label>
+<select id='stylistId' name='stylistId' type='text'>
+#foreach($stylist in $stylists)
+	<option value="$stylist.getId()">$stylist.getName()</option>
+#end
+</select>
+
+  <div class="form-group">
+	<label for="name">Name</label>
+	<input id="name" name="name" type="name" class="form-control">
+    <label for="style">Style</label>
+    <input id="style" name="style" type="text" class="form-control">
+		<label for="phone">Phone number</label>
+    <input id="phone" name="phone" type="phone" class="form-control">
+
+  </div>
+
+  <button type="submit" class="btn btn-success">Add Client</button>
+</form>
+</div>
+
+<a href="/stylists">View Your Stylist</a>
+<a href="/stylists/new">Add a Stylist</a>

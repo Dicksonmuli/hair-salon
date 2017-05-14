@@ -95,13 +95,13 @@ public class StylistTest {
 			assertTrue(stylist1.getClients().containsAll(Arrays.asList(clients)));
 }
 
-	//check updating stylist
-	// @Test
-	// public void update_updatesStylistDescription_true() {
-	// 	stylist1.save();
-	// 	stylist1.update("Lauryne", 1, "Dont work well");
-	// 	assertEquals("Lauryne", Stylist.find(stylist1.getId()).getName());
-	// 	assertEquals(1, Stylist.find(stylist1.getId()).getPhoneNumber());
-	// 	assertEquals("Dont work well", Stylist.find(stylist1.getId()).getDescription());
-	// }
+	// check updating stylist
+	@Test
+	public void update_updatesStylistDescription_true() {
+		stylist1.save();
+		stylist1.update("Lauryne", 1, "Dont work well");
+		assertEquals("Lauryne", Stylist.find(stylist1.getId()).getName());
+		assertEquals(1, Stylist.find(stylist1.getId()).getPhoneNumber());
+		assertEquals("Dont work well", Stylist.find(stylist1.getId()).getDescription());
+	}
 }

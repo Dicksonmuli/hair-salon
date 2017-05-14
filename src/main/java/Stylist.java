@@ -85,8 +85,10 @@ public void delete() {
 //updating variables in the table
 public void update(String name, int phone, String description) {
 try(Connection con = DB.sql2o.open()) {
-	String sql = "UPDATE stylists SET name = :name, phone = :phone, description = :description WHERE id = :id";
+	String sql = "UPDATE stylists SET (name, phone, description) = (:name, :phone, :description) WHERE id = :id";
 	con.createQuery(sql)
+		.addParameter("name", name)
+		.addParameter("phone", phone)
 		.addParameter("description", description)
 		.addParameter("id", id)
 		.executeUpdate();

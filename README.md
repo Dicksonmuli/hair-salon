@@ -30,6 +30,10 @@ As an employee, I need to be able to delete a client if they no longer visit our
 Dickson
 [email](dicksom6@gmail.com) dicksonm6@gmail.com
 
+## Links
+* Link to [github  repository](https://github.com/Dicksonmuli/hair-salon)
+* Link to [deployed website](https://java-hairsalon.herokuapp.com/)
+
 ## Technologies Used
 * Java,
 * JUnit,

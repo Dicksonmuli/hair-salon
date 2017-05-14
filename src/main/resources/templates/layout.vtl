@@ -2,14 +2,89 @@
 <html>
 
 <head>
-  <title>Hair Salon</title>
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+
+  <!-- top -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Hair Salon Manager</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.css" rel="stylesheet">
+
+  <!-- Add custom CSS here -->
+  <link href="css/business-casual.css" rel="stylesheet">
 </head>
 
 <body>
+
+  <div class="brand">BusyLady Hair Salon</div>
+  <div class="address-bar">Nairobi Kenya | Moi Avenue | BusyLady Salon | Call 0719 364 087</div>
+
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+        <a class="navbar-brand" href="index.html">BusyLady Hair Salon</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">Home</a>
+          </li>
+          <li><a href="about.html">Stylists</a>
+          </li>
+          <li><a href="blog.html">book Appointment</a>
+          </li>
+          <li><a href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+
   <div class="container">
     #parse( $template )
   </div>
-</body>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <p>Copyright &copy; Company 2013</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/jquery-1.10.2.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script>
+    // Activates the Carousel
+    $('.carousel').carousel({
+      interval: 5000
+    })
+  </script>
+
+  <title>Hair Salon</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+  </head>
+
+  <body>
+    <div class="container">
+      #parse( $template )
+    </div>
+  </body>
 
 </html>
